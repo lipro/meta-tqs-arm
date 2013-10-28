@@ -1,4 +1,4 @@
-# Adapted from linux-imx.inc, copyright (C) 2013 Alere Technologies GmbH
+# Adapted from linux-imx.inc, copyright (C) 2013 Li-Pro.Net
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 require recipes-kernel/linux/linux-imx.inc
