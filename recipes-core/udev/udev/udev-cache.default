@@ -2,3 +2,6 @@
 
 # Comment this out to disable device cache
 DEVCACHE="/etc/dev.tar"
+
+# Comment this out to set settle timeout
+DEVSETTLETO=9

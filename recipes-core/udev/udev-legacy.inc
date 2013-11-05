@@ -10,19 +10,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
                     file://libudev/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343 \
                     file://extras/gudev/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
 
-##############################################################################################################
-# from 172 means: http://github.com/incandescant/meta-x32/blob/master/udev/udev-new.inc
-# from 182 means: http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/udev/udev.inc
-##############################################################################################################
-
-# from 182: LDFLAGS += "-lrt"
-
-# from 172: DEPENDS = "acl glib-2.0 libusb usbutils pciutils linux-libc-headers gperf-native libxslt-native"
 DEPENDS = "acl glib-2.0 libusb usbutils pciutils gperf-native libxslt-native util-linux"
 RPROVIDES_${PN} = "hotplug"
 RRECOMMENDS_${PN} += "udev-extraconf usbutils-ids pciutils-ids"
-# from 172: RRECOMMENDS_${PN} += "udev-extraconf udev-cache usbutils-ids pciutils-ids"
-# from 172: RDEPENDS_libudev = "${PN} (= ${EXTENDPKGV})"
+RRECOMMENDS_${PN} += "udev-cache"
+RDEPENDS_libudev = "${PN} (= ${EXTENDPKGV})"
 
 # Needs blkid from this particular package. The one in e2fsprogs is
 # old and incompatible.
@@ -38,7 +30,8 @@ SRC_URI = "http://ftp.sunet.se/pub/Linux/kernel.org/linux/utils/kernel/hotplug/u
            file://local.rules \
            file://udev-cache \
            file://udev-cache.default \
-           file://init"
+           file://init \
+           file://volatiles"
 
 inherit autotools pkgconfig update-rc.d
 
@@ -95,10 +88,10 @@ do_install_append () {
 	install -d ${D}${sysconfdir}/default
 	install -m 0755 ${WORKDIR}/udev-cache.default ${D}${sysconfdir}/default/udev-cache
 
-	# from 182: install -d ${D}${sysconfdir}/default/volatiles
-	# from 182: install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/00_udev
+	install -d ${D}${sysconfdir}/default/volatiles
+	install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/00_udev
 
-	# META-TQS-ARM: TODO: EVALUATE (see udev-172/udev-cache): touch ${D}${sysconfdir}/udev/cache.data
+	touch ${D}${sysconfdir}/udev/cache.data
 
 	install -d ${D}${sysconfdir}/udev/rules.d/
 
