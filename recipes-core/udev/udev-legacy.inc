@@ -13,7 +13,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
 DEPENDS = "acl glib-2.0 libusb usbutils pciutils gperf-native libxslt-native util-linux"
 RPROVIDES_${PN} = "hotplug"
 RRECOMMENDS_${PN} += "udev-extraconf usbutils-ids pciutils-ids"
-RRECOMMENDS_${PN} += "udev-cache"
 RDEPENDS_libudev = "${PN} (= ${EXTENDPKGV})"
 
 # Needs blkid from this particular package. The one in e2fsprogs is
