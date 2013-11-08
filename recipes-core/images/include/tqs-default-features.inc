@@ -2,4 +2,4 @@
 
 IMAGE_FEATURES += "ssh-server-dropbear"
 
-IMAGE_INSTALL_mx3 += "mtd-utils"
+IMAGE_INSTALL += "${@base_contains('MACHINE_FEATURES', 'flash', 'mtd-utils mtd-utils-jffs2', '', d)}"
