@@ -23,6 +23,7 @@ LOCALVERSION = "${LINUX_VERSION_EXTENSION}"
 PV = "${LINUX_VERSION}${LINUX_VERSION_EXTENSION}+git${SRCREV}"
 
 SRC_URI = "git://github.com/lipro/linux-tqs.git;protocol=git;branch=tqma35 \
+	   file://0001-ARM-versatile-fix-endianess-in-panel-setup-RGB-BGR.patch \
            file://0001-ARM-6329-1-wire-up-sys_accept4-on-ARM.patch \
            file://linux-2.6.34-armv6-armv7-for-versatilepb.patch \
            file://defconfig"
