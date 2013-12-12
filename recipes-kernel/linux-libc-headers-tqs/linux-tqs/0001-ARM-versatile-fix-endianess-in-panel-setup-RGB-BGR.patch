@@ -1,0 +1,53 @@
+From da408621b08a987c0210f1fcdd902b34751874ed Mon Sep 17 00:00:00 2001
+From: Stephan Linz <linz@li-pro.net>
+Date: Tue, 10 Dec 2013 08:44:14 +0100
+Subject: [PATCH] [ARM] versatile: fix endianess in panel setup (RGB -> BGR)
+
+Signed-off-by: Stephan Linz <linz@li-pro.net>
+---
+ arch/arm/mach-versatile/core.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/mach-versatile/core.c b/arch/arm/mach-versatile/core.c
+index 3b1a4ee..abd6743 100644
+--- a/arch/arm/mach-versatile/core.c
++++ b/arch/arm/mach-versatile/core.c
+@@ -484,7 +484,7 @@ static struct clcd_panel vga = {
+ 	.width		= -1,
+ 	.height		= -1,
+ 	.tim2		= TIM2_BCD | TIM2_IPC,
+-	.cntl		= CNTL_LCDTFT | CNTL_LCDVCOMP(1),
++	.cntl		= CNTL_LCDTFT | CNTL_BGR | CNTL_LCDVCOMP(1),
+ 	.bpp		= 16,
+ };
+ 
+@@ -507,7 +507,7 @@ static struct clcd_panel sanyo_3_8_in = {
+ 	.width		= -1,
+ 	.height		= -1,
+ 	.tim2		= TIM2_BCD,
+-	.cntl		= CNTL_LCDTFT | CNTL_LCDVCOMP(1),
++	.cntl		= CNTL_LCDTFT | CNTL_BGR | CNTL_LCDVCOMP(1),
+ 	.bpp		= 16,
+ };
+ 
+@@ -530,7 +530,7 @@ static struct clcd_panel sanyo_2_5_in = {
+ 	.width		= -1,
+ 	.height		= -1,
+ 	.tim2		= TIM2_IVS | TIM2_IHS | TIM2_IPC,
+-	.cntl		= CNTL_LCDTFT | CNTL_LCDVCOMP(1),
++	.cntl		= CNTL_LCDTFT | CNTL_BGR | CNTL_LCDVCOMP(1),
+ 	.bpp		= 16,
+ };
+ 
+@@ -553,7 +553,7 @@ static struct clcd_panel epson_2_2_in = {
+ 	.width		= -1,
+ 	.height		= -1,
+ 	.tim2		= TIM2_BCD | TIM2_IPC,
+-	.cntl		= CNTL_LCDTFT | CNTL_LCDVCOMP(1),
++	.cntl		= CNTL_LCDTFT | CNTL_BGR | CNTL_LCDVCOMP(1),
+ 	.bpp		= 16,
+ };
+ 
+-- 
+1.8.3.4
+
